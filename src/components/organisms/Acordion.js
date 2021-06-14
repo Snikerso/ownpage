@@ -28,7 +28,7 @@ const Details = styled.div`
         justify-content:space-between;
         list-style: none;
         padding: 6px 12px;
-        background-color: ${(props) => props.isActive ? props.theme.first : props.theme.third} ;
+        background-color: ${(props) => props.isActive ? props.theme.first : props.theme.white} ;
         color:  ${(props) => props.isActive ? props.theme.second : props.theme.first} ;
         border:3px solid ${({theme})=>theme.first};
         border-radius: ${({theme})=>theme.radius};

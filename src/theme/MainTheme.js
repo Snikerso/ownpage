@@ -1,8 +1,8 @@
 export const theme = {
   first: '#363636', // dark
   second: '#FACD2D', // yellow
-  third: 'white', // 
-  white: '#EDF2F4', // white
+  third: '#4066C8', //  blue
+  white: '#FFFFFF', // white
   grey: '#EBEBEB;', // grey
   black: '#000000',
   mediaFirst: '1580px',

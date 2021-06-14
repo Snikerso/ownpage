@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import { Head } from 'components/atoms/Heads';
 import { DiGithubBadge } from 'react-icons/di';
-import { MdLanguage } from 'react-icons/md';
 import PortfolioTechStack from './PortfolioTechStack';
+import IconLink from '../atoms/Icons/IconLink';
 
 const StyledWrapperPortfolioItem = styled.section`
   display: flex;
@@ -18,24 +18,9 @@ const StyledWrapperPortfolioItem = styled.section`
     border-radius: 5px;
     z-index: 1;
   }
-  p{
-    padding:15px;
-    margin-top:42px;
-  }
-  h3{
-    color:${({theme})=> theme.first};
-    font-family: monsterrat-semibold;
-  }
-
- 
-
   @media screen and (max-width:${({theme}) => theme.mediaThourth}){
     flex-direction:column;
     align-items: center;
-    p{
-      padding:0px;
-      order:1;
-    }
     img{
       order:0;
     }
@@ -48,36 +33,39 @@ const StyledWrapperPortfolioItem = styled.section`
   }
 
 `;
+const StyledWrapperTitleAndSubtitle = styled.section`
+  margin-bottom:30px;
+
+`;
+const StyledWrapperTechStack = styled.div`
+  margin-top:30px;
+`;
 const StyledWrappperImgTechStack = styled.section`
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  > * {
-    margin-top:20px;
-  }
 `;
 
 const StyledWrapperDescriptionMore = styled.section`
   display:flex;
-
   flex-direction:column;
+  align-self:center;
+  height:100%;
   order:1;
   margin-left:20px;
- p{
-   order:0;
- }
-  a{
+
+  p {
+    order:0;
+  }
+
+  a {
     display:block;
-    margin-left:15px;
+    align-self:flex-end;
     color: ${({theme})=> theme.first};
     font-weight:bold;
-
-  @media screen and (max-width:${({theme}) => theme.mediaThourth}){
-    margin-left:0px;
-    margin-top:15px;
   }
-  }
+  
 `;
 
 const StyledWrappperImgLinks = styled.section`
@@ -89,6 +77,7 @@ const StyledWrappperImgLinks = styled.section`
   flex-direction: column;
   align-items: center;
 `;
+
 const Links = styled.section`
   display: flex;
   align-items: center;
@@ -126,15 +115,17 @@ const StyledBorders = styled.div`
   
 `
 
-function PortfolioItem({ left, item }) {
+
+function PortfolioItem({ item }) {
 
     return (
       <>
         <StyledWrapperPortfolioItem>
-          {left ? (
-            <>
               <StyledWrappperImgTechStack>
-              <Head portfolio>{item.title}</Head>
+                <StyledWrapperTitleAndSubtitle>
+                  <Head>{item.title}</Head>
+                  <p>{item.subtitle}</p>
+                </StyledWrapperTitleAndSubtitle>
               <Links>
                 {item.github != '' && (
                   <a href={item.github} target="_blank">
@@ -143,7 +134,7 @@ function PortfolioItem({ left, item }) {
                 )}
                 {item.page != '' && (
                   <a href={item.page} target="_blank">
-                    <MdLanguage size={29} />
+                    <IconLink size={29} />
                   </a>
                 )}
               </Links>
@@ -151,46 +142,15 @@ function PortfolioItem({ left, item }) {
                 <StyledBorders/>
                   <img src={require(`assets/images/projects/${item.image}`)} />
               </StyledWrappperImgLinks>
-              <h3>Użyte technologie: </h3>
-              <PortfolioTechStack techstack={item.techstack} />
-            </StyledWrappperImgTechStack>
-            
-            <StyledWrapperDescriptionMore>
-              <p>{item.description}</p>
-              <NavLink to={`/projects/${item.slug}`}>Więcej</NavLink>
-            </StyledWrapperDescriptionMore>
-            </>
-          ):(
-            <>
-              <StyledWrapperDescriptionMore>
-                <p>{item.description}</p>
-                <NavLink to={`/projects/${item.slug}`}>Więcej</NavLink>
-              </StyledWrapperDescriptionMore>
-                <StyledWrappperImgTechStack>
-                <Head portfolio>{item.title}</Head>
-                <Links>
-                    {item.github != '' && (
-                      <a href={item.github} target="_blank">
-                        <DiGithubBadge size={33} />
-                      </a>
-                    )}
-                    {item.page != '' && (
-                      <a href={item.page} target="_blank">
-                        <MdLanguage size={29} />
-                      </a>
-                    )}
-                </Links>
-                <StyledWrappperImgLinks>
-                  <StyledBorders/>
-                    <img src={require(`assets/images/projects/${item.image}`)} />
-                </StyledWrappperImgLinks>
+              <StyledWrapperTechStack>
                 <h3>Użyte technologie: </h3>
                 <PortfolioTechStack techstack={item.techstack} />
-              </StyledWrappperImgTechStack>
-            </>
-          )}
-
-          
+              </StyledWrapperTechStack>
+            </StyledWrappperImgTechStack>
+            <StyledWrapperDescriptionMore>
+              <p>{item.description}</p>
+              {item.slug &&<NavLink to={`/projekty/${item.slug}`}>Więcej</NavLink> }
+              </StyledWrapperDescriptionMore>
         </StyledWrapperPortfolioItem>
       </>
     );

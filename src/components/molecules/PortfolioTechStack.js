@@ -10,13 +10,13 @@ const StyledWrapper = styled.div`
   display: flex;
   align-self:flex-start;
   flex-wrap: wrap;
+  margin-top:5px;
+  animation: ${breatheAnimation} 2s;
   > div{
     margin-right:10px;
     margin-bottom:10px;
-  
+
   }
-  animation: ${breatheAnimation} 2s;
-  margin-top:-10px;
   ${({main}) =>
         main && css`
           margin-top:0px;

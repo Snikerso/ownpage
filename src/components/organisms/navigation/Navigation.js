@@ -5,7 +5,7 @@ import NavItem from 'components/atoms/NavItem';
 
 const NavBar = styled.nav`
   display: flex;
-  width: 180px;
+  width: 300px;
   justify-content: space-between;
   .active {
     border-bottom: 3px solid ${({theme})=>theme.second};
@@ -43,11 +43,10 @@ const NavHamburgerMenu = styled.nav`
     top:94px;
     padding:20px;
     z-index:2;
-    background-color:${({theme}) =>theme.third};
-    border-top:3px solid ${({theme}) =>theme.first};
+    background-color:${({theme}) =>theme.white};
     border-bottom:3px solid ${({theme}) =>theme.first};
     left:0%;
-    a:first-child{
+    a {
       margin-bottom:25px;
     }
   }
@@ -64,14 +63,16 @@ const Navigation = () => {
         {isOpen && (
 
           <NavHamburgerMenu onMouseLeave={() => setIsOpen(false)}>
-            <NavItem onClick={() => setIsOpen(false)}  to="/" text="O mnie" />
-            <NavItem onClick={() => setIsOpen(false)} exact to="/projects" text="Projekty" />
+            <NavItem onClick={() => setIsOpen(false)} exact to="/blog" text="Blog" />
+            <NavItem onClick={() => setIsOpen(false)} exact to="/o-mnie" text="O mnie" />
+            <NavItem onClick={() => setIsOpen(false)} exact to="/projekty" text="Projekty" />
           </NavHamburgerMenu>
         )}
       </NavHamburger>
       <NavBar >
-        <NavItem exact to="/" text="O mnie" />
-        <NavItem to="/projects" text="Projekty" />
+        <NavItem exact to="/blog" text="Blog" />
+        <NavItem exact to="/o-mnie" text="O mnie" />
+        <NavItem to="/projekty" text="Projekty" />
       </NavBar>
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Helmet from 'react-helmet';
 import AvatarExplain from 'components/molecules/AvatarExplain';
 import { HeadWithUnderLine } from 'components/atoms/Heads';
 import { HeadWithItem } from 'components/atoms/Wrappers';
@@ -17,6 +18,10 @@ const StyledHeadWithItem = styled(HeadWithItem)`
 
 function AboutPage() {
   return (
+    <>
+    <Helmet>
+    <title>O mnie</title>
+    </Helmet>
     <StyledWrapper>
       <AvatarExplain />
       <div>
@@ -44,6 +49,8 @@ function AboutPage() {
       </div>
 
     </StyledWrapper>
+
+    </>
   );
 }
 

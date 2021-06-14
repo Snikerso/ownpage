@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { lazy, useContext } from 'react';
 import Helmet from 'react-helmet';
 import ReactMd from 'react-md-file';
 import { ProjectsContext } from 'context/ProjectsContext';
@@ -27,7 +27,17 @@ const BreadcrumbsNav = styled.div`
   }
 
 `
+const StyledWrapperMeta = styled.article`
 
+  p{
+    margin-top:20px;
+    color: ${({theme})=>theme.thourth}
+  }
+  
+`
+const StyledWrapperArticle = styled.article`
+  margin: 100px 0 ;
+`
 
 function ProjectsItemPage({ match }) {
 
@@ -35,6 +45,9 @@ function ProjectsItemPage({ match }) {
   const Breadcrumbs = match.url.split('/')
   const param = match.params.id
   const project = projects.filter(item => item.slug === param)
+
+
+  const Project = lazy(()=> import(`assets/projects/${project[0].source}`));
 
   return (
     <>
@@ -52,14 +65,20 @@ function ProjectsItemPage({ match }) {
                 </BreadcrumbsNav>
 
                 <ImageWithBorders image={item.image}/>
+                <StyledWrapperMeta>                
+                  <h1>{item.title}</h1>
+                  <span>{item.data}</span>
 
-                <h1>
-                  {item.title}
-                </h1>
+                  <a href={item.page}>Link</a>
+                  <a href={item.github}>Github</a>
 
-                <article>
-                  <ReactMd fileName={require(`assets/posts/${item.source}`)} />
-                </article>
+                  <p>{item.description}</p>
+                </StyledWrapperMeta>
+
+
+                <StyledWrapperArticle>
+                  <Project/>
+                </StyledWrapperArticle>
             </>
             )
           })

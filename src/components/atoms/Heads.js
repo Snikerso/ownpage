@@ -1,19 +1,10 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {ReactComponent as UnderLine} from 'assets/icons/underline2.svg';
 
 export const Head = styled.h2`
     align-self:flex-start;
     color:${({theme})=>theme.first};
-    margin-bottom:5px;
     font-family: monsterrat-semibold;
-
-    ${({blogpost}) =>
-        blogpost && css`
-            font-size:20px;
-            margin-bottom:0px;
-        `
-    }
 
 `
 export const HeadWithBorder = styled.h2`

@@ -8,7 +8,7 @@ const StyledWrapperHeader = styled.div`
   position:relative;
   display: flex;
   width: 100%;
-  background-color: ${({theme}) => theme.third};
+  background-color: ${({theme}) => theme.white};
   height: 100px;
 `;
 const StyledWrapper = styled.header`

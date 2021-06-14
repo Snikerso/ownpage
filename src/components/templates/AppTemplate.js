@@ -8,7 +8,6 @@ const StyledWrapper = styled.div`
   flex-direction:column;
   min-height:1vh;
 `;
-
 const Main = styled.main`
   margin: 100px auto;
   width: 800px;
